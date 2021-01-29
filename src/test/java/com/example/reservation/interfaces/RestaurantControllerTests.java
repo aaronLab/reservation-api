@@ -32,4 +32,25 @@ public class RestaurantControllerTests {
                 ));
     }
 
+    @Test
+    public void detail() throws Exception {
+        mvc.perform(get("/restaurants/1000"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(
+                        containsString("\"name\":\"Old Restaurant\"")
+                ))
+                .andExpect(content().string(
+                        containsString("\"id\":1000")
+                ));;
+
+        mvc.perform(get("/restaurants/2000"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(
+                        containsString("\"name\":\"New Restaurant\"")
+                ))
+                .andExpect(content().string(
+                        containsString("\"id\":2000")
+                ));
+    }
+
 }
